@@ -48,12 +48,12 @@ async function handle_request_dollar_api() {
         if (!panelButtonText) {
             panelButtonText = new St.Label({
                 style_class: 'cPanelText',
-                text: `1$ = ${displayValue} IRR(T)`,
+                text: `1$ = ${displayValue}T`,
                 y_align: Clutter.ActorAlign.CENTER,
             });
             panelBox.add_child(panelButtonText);
         } else {
-            panelButtonText.text = `1$ = ${displayValue} IRR(T)`;
+            panelButtonText.text = `1$ = ${displayValue}T`;
         }
 
         if (!panelButtonIndicator) {
@@ -71,12 +71,12 @@ async function handle_request_dollar_api() {
         logError(error, 'handle_request_dollar_api');
         if (!panelButtonText) {
             panelButtonText = new St.Label({
-                text: 'USD: —',
+                text: '1$ = — T',
                 y_align: Clutter.ActorAlign.CENTER,
             });
             panelBox.add_child(panelButtonText);
         } else {
-            panelButtonText.text = 'USD: —';
+            panelButtonText.text = '1$ = — T';
         }
     }
 }
