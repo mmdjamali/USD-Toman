@@ -50,6 +50,7 @@ async function handle_request_dollar_api() {
                 style_class: 'cPanelText',
                 text: `1$ = ${displayValue}T`,
                 y_align: Clutter.ActorAlign.CENTER,
+                style: 'line-height: 1; font-size: 14px;',
             });
             panelBox.add_child(panelButtonText);
         } else {
@@ -61,12 +62,16 @@ async function handle_request_dollar_api() {
                 style_class: isPriceIncreased ? 'priceIncrease' : 'priceDecrease',
                 text: upDownIcon,
                 y_align: Clutter.ActorAlign.CENTER,
+                style: 'line-height: 1; font-size: 12px;',
             });
             panelBox.add_child(panelButtonIndicator);
         } else {
             panelButtonIndicator.style_class = isPriceIncreased ? 'priceIncrease' : 'priceDecrease';
             panelButtonIndicator.text = upDownIcon;
         }
+
+        panelButtonIndicator.get_clutter_text().set_line_alignment(0);
+        panelButtonText.get_clutter_text().set_line_alignment(0);
     } catch (error) {
         logError(error, 'handle_request_dollar_api');
         if (!panelButtonText) {
@@ -85,8 +90,7 @@ export default class Extension {
     enable() {
         panelBox = new St.BoxLayout({
             style_class: 'panel-button',
-            x_align: Clutter.ActorAlign.CENTER,
-            y_align: Clutter.ActorAlign.CENTER,
+            y_expand: true
         });
 
         Main.panel._centerBox.insert_child_at_index(panelBox, 0);
